@@ -1,12 +1,9 @@
 import * as React from 'react';
 
+import { gql, useQuery } from '@apollo/client';
 import {
-  Button,
   Heading,
-  HStack,
-  Image,
-  Link,
-  Text,
+  Spinner,
   useColorModeValue as mode,
   VStack,
 } from '@chakra-ui/react';
@@ -14,7 +11,19 @@ import {
 import Container from '@/components/Container';
 import Layout from '@/components/layout';
 
+interface HelloQuery {
+  hello: string;
+}
+
+const HELLO_QUERY = gql`
+  query {
+    hello
+  }
+`;
+
 const HomePage = () => {
+  const { data, loading } = useQuery<HelloQuery>(HELLO_QUERY);
+
   return (
     <Layout>
       <Container as='main'>
@@ -24,32 +33,17 @@ const HomePage = () => {
           minHeight={{ base: 'calc(100vh - 7.5rem)', md: 'calc(100vh - 8rem)' }}
           spacing={6}
         >
-          <Heading as='h1' color={mode('gray.900', 'orange.300')}>
-            Next.js + Chakra UI + Typescript Starter
-          </Heading>
-          <HStack>
-            <Link
-              aria-label='Deploy to Vercel'
-              isExternal
-              href='https://vercel.com/import/git?s=https://github.com/rizqitsani/next-chakra-ts-starter'
-            >
-              <Image
-                src='https://vercel.com/button'
-                alt='Vercel deploy button'
-              />
-            </Link>
-            <Text as='span'>or</Text>
-            <Button
-              as='a'
-              href='https://github.com/rizqitsani/next-chakra-ts-starter/generate'
-              target='_blank'
-              rel='noopener noreferrer'
-              size='sm'
-              colorScheme='orange'
-            >
-              Use This Template
-            </Button>
-          </HStack>
+          {loading ? (
+            <Spinner
+              thickness='4px'
+              color={mode('orange.600', 'orange.300')}
+              size='xl'
+            />
+          ) : (
+            <Heading as='h1' color={mode('gray.900', 'orange.300')}>
+              {data?.hello}
+            </Heading>
+          )}
         </VStack>
       </Container>
     </Layout>

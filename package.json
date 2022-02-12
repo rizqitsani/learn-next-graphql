@@ -17,12 +17,14 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@apollo/client": "^3.5.8",
     "@chakra-ui/react": "^1.8.1",
     "@emotion/cache": "^11.7.1",
     "@emotion/react": "^11",
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11",
     "framer-motion": "^4",
+    "graphql": "^16.3.0",
     "next": "12.0.9",
     "next-seo": "^4.29.0",
     "next-sitemap": "^1.9.12",

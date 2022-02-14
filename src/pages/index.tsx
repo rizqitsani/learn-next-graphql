@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-import { gql, useQuery } from '@apollo/client';
 import {
   Heading,
   Spinner,
@@ -11,18 +10,10 @@ import {
 import Container from '@/components/Container';
 import Layout from '@/components/layout';
 
-interface HelloQuery {
-  hello: string;
-}
-
-const HELLO_QUERY = gql`
-  query {
-    hello
-  }
-`;
+import { useHelloQuery } from '@/graphql/generated';
 
 const HomePage = () => {
-  const { data, loading } = useQuery<HelloQuery>(HELLO_QUERY);
+  const { data, loading } = useHelloQuery();
 
   return (
     <Layout>

@@ -14,7 +14,8 @@
     "type:check": "tsc --noEmit --incremental false",
     "format:check": "prettier -c src",
     "format": "prettier -w src",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "generate": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
     "@apollo/client": "^3.5.8",
@@ -35,6 +36,10 @@
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
+    "@graphql-codegen/cli": "^2.6.1",
+    "@graphql-codegen/typescript": "2.4.3",
+    "@graphql-codegen/typescript-operations": "2.3.0",
+    "@graphql-codegen/typescript-react-apollo": "3.2.5",
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.2",
     "@types/node": "16.11.6",

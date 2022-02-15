@@ -6,6 +6,8 @@ import { ChakraProvider } from '@chakra-ui/react';
 import { CacheProvider } from '@emotion/react';
 import { DefaultSeo } from 'next-seo';
 
+import DismissableToast from '@/components/DismissableToast';
+
 import { useApollo } from '@/lib/apolloClient';
 import emotionCache from '@/lib/emotion';
 
@@ -28,6 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           }}
         />
         <ApolloProvider client={apolloClient}>
+          <DismissableToast />
           <Component {...pageProps} />
         </ApolloProvider>
       </ChakraProvider>
